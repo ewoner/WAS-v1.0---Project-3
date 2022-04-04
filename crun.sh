@@ -1,0 +1,2 @@
+./Build/client.exe
+echo $?

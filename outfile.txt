@@ -1,0 +1,34 @@
+$SERVER_SRCS is      [Sources/Server/connection.cpp Sources/Server/server.cpp Sources/Server/handler.cpp]
+$CLIENT_SRCS is      [Sources/Client/client.cpp]
+$SERVER_OBJS is      [Build/Sources/Server/connection.o Build/Sources/Server/server.o Build/Sources/Server/handler.o]
+$CLIENT_OBJS is      [Build/Sources/Client/client.o]
+$SERVER_DEPS is      [Build/Sources/Server/connection.d Build/Sources/Server/server.d Build/Sources/Server/handler.d]
+$CLIENT_DEPS is      [Build/Sources/Client/client.d]
+$SERVER_INC_DIRS is  [Sources/Server]
+$CLIENT_INC_DIRS is  [Sources/Client]
+$SERVER_INC_FLAGS is [-ISources/Server]
+$CLIENT_INC_FLAGS is [-ISources/Client]
+$SERVER_FLAGS is     [-ISources/Server -MMD -MP -std=c++17 -g]
+$CLIENT_FLAGS is     [-ISources/Client -MMD -MP -std=c++17 -g]
+
+Compiling .... Build/Sources/Server/server.o 
+
+mkdir -p Build/Sources/Server/
+echo g++ -ISources/Server -MMD -MP -std=c++17 -g -c Sources/Server/server.cpp -o Build/Sources/Server/server.o
+g++ -ISources/Server -MMD -MP -std=c++17 -g -c Sources/Server/server.cpp -o Build/Sources/Server/server.o
+
+Compiling .... Build/Sources/Server/connection.o 
+
+mkdir -p Build/Sources/Server/
+echo g++ -ISources/Server -MMD -MP -std=c++17 -g -c Sources/Server/connection.cpp -o Build/Sources/Server/connection.o
+g++ -ISources/Server -MMD -MP -std=c++17 -g -c Sources/Server/connection.cpp -o Build/Sources/Server/connection.o
+
+Compiling .... Build/Sources/Server/handler.o 
+
+mkdir -p Build/Sources/Server/
+echo g++ -ISources/Server -MMD -MP -std=c++17 -g -c Sources/Server/handler.cpp -o Build/Sources/Server/handler.o
+g++ -ISources/Server -MMD -MP -std=c++17 -g -c Sources/Server/handler.cpp -o Build/Sources/Server/handler.o
+
+Creating server.... Build/Sources/Server/server.exe 
+
+g++ Build/Sources/Server/connection.o Build/Sources/Server/server.o Build/Sources/Server/handler.o -o Build/server.exe -ISources/Server -MMD -MP -std=c++17 -g
