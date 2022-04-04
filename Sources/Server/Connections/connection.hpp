@@ -1,48 +1,64 @@
 #ifndef CONNECTION_HPP
 #define CONNECTION_HPP
 
-#include <unistd.h>
-#include <sys/socket.h>
-
-#include <iostream>
+#include <sstream>
 #include <stack>
 #include <string>
 
-#include "./Handlers/handler.hpp"
-#include "../was_presets.hpp"
+#include "connectionmanager.hpp"
 
+class Handler;
 
 class Connection {
 public:
     Connection();
-    Connection( unsigned int socket );
-
+    Connection( int );
+    //socket member operations
     int getSocket();
-
-    void switchHandler( Handler & newHandler );
-    void addHandler( Handler & addHandler );
-    void removeHandler( );
-    Handler & getHandler();
-    void clearHandlers();
-
+    
+    //handlers member operations
+    void addHandler( Handler );
+    void clearAllHandlers();
+    Handler getHandler();
+    void removeHandler( Handler );
+    void swithHandler( Handler );
+    
+    //creationTime member operations
     long getCreationTime();
-    long getLastSendTime();
-
+    
+    //close member operations
     void close();
     bool isClosed();
     
-    int send( std::string data );
+    //sendBuffer member operations
+     int getLengthToSend();
+    void bufferData( std::string );
+    
+    //lastSendTime member operations
+    long getLastSendTime();
+    
+    //Send, receive, close socket operations
+    void sendTheBuffer();
+    int send( std::string );
     void receive();
+    void closeSocket();
+    
 
+    
+    
 private:
-    unsigned int socket;
+    int socket;
     std::stack<Handler> handlers;
-    long creationTime;
-    long lastSendTime;
+    long creationtime;
     bool closed;
-    char * recvBuffer;
-    char * sendBuffer;
+    std::stringbuf readBuffer, writeBuffer;
+    const int BUFFERSIZE = ConnectionManager::MAX_BUFFERED + 1;   
+    std::stringbuf sendBuffer;
+    long lastSendTime;
+    
+    void prepWriteBuffer( std::string );
+    std::string readRequest( );
+    
 };
-
 
 #endif

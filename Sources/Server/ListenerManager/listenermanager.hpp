@@ -1,21 +1,21 @@
 #ifndef LISTENERMANAGER_HPP
 #define LISTENERMANAGER_HPP
 
+#include "../Connections/connectionmanager.hpp"
+
 class ListenerManager {
 public:
     ListenerManager();
-    void start();
-    void finalize();
+    ~ListenerManager();
+    void run();
     void setConnectionManager( ConnectionManager );
-    void setRunning( bool );
-    bool isRunning();
+    void isRunning();
 
 private:
-    // List of ServerSocketChannels
-    ConnectionManager conManager;
-    //final int max = 10;
-    //Selector acceptSelector;
-    bool running;
+     int listenerSocket;
+     bool running;
+     ConnectionManager conManager;
+     
 
 };
 
