@@ -5,7 +5,6 @@
 #include <ostream>
 #include <set>
 #include <string>
-#include <vector>
 
 class Account;
 
@@ -21,21 +20,24 @@ public:
     std::string getDiscription();
     void setDiscription( std::string );
     
-    void addAttendee( Account* );
-    void removeAttendee( Account* );
+    bool addAttendee( Account* );
+    bool removeAttendee( Account* );
     int numAttendees();
-    std::set<Account*> getAttendees();
+    std::set<Account*>* getAttendees();
     Account* seekAttendee( std::string );
     
     void load( std::istream );
     void save( std::ostream );
     
+    friend std::ostream& operator<<( std::ostream&, const ChatRoom& );
+    friend std::istream& operator>>( std::istream&, ChatRoom& );
+    
 private:
      int ID;
      std::string name;
      std::string discription;
-     std::vector<Account*> attendees;
+     std::set<Account*> attendees;
+     
+     ChatRoom( std::string );
 };
-
-
 #endif

@@ -5,9 +5,8 @@
 #include <ostream>
 #include <set>
 #include <string>
-#include <vector>
 
-class ChatRoom;
+#include "../ChatRoom/chatroom.hpp"
 
 class Account {
 public:
@@ -27,24 +26,28 @@ public:
     long getLoginTime();
     void setLonginTime( long );
     
-    void addChatRoom( ChatRoom* );
-    void removeRoom( ChatRoom* );
+    bool addChatRoom( ChatRoom* );
+    bool removeRoom( ChatRoom* );
     int numChatRooms();
-    std::set<ChatRoom*> getChatRooms();
+    std::set<ChatRoom*>* getChatRooms();
     ChatRoom* seekChatRoom( std::string );
     
-    void load( std::istream );
-    void save( std::ostream );
-
+    void load( std::istream& );
+    void save( std::ostream& );
+    
+    friend std::ostream& operator<<( std::ostream&, const Account& );
+    friend std::istream& operator>>( std::istream& is, Account& account );
+    
 private:
      int ID;
      std::string name;
      std::string password;
      std::string discription;
      long loginTime;
-     std::vector<ChatRoom*> currentChats;
+     std::set<ChatRoom*> currentChats;
      
      Account( std::string, std::string, long );
+     void setID( int );
 };
 
 
