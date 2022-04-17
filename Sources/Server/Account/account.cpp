@@ -36,23 +36,23 @@ long Account::getLoginTime(){
 void Account::setLonginTime( long loginTime ) {
     this->loginTime = loginTime;
 }
-bool Account::addChatRoom( ChatRoom* newRoom ){
+bool Account::addLocation( Location* newRoom ){
     return currentChats.insert( newRoom ).second;
 }
-bool Account::removeRoom( ChatRoom* removeRoom){
+bool Account::removeRoom( Location* removeRoom){
     return ( currentChats.erase( removeRoom ) == 1 );
 }
-int Account::numChatRooms(){
+int Account::numLocations(){
     return this->currentChats.size();
 }
-std::set<ChatRoom*>* Account::getChatRooms(){
-    std::set<ChatRoom*>* rooms = new std::set<ChatRoom*>{};
+std::set<Location*>* Account::getLocations(){
+    std::set<Location*>* rooms = new std::set<Location*>{};
     for ( auto room : currentChats ) {
         rooms->insert( room );
     }
     return rooms;
 }
-ChatRoom* Account::seekChatRoom( std::string name ){
+Location* Account::seekLocation( std::string name ){
     auto chat = currentChats.begin();
     for ( ; chat != currentChats.end(); chat ++ ) {
         if ( name == (*chat)->getName() ) {

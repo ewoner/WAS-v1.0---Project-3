@@ -6,7 +6,7 @@
 #include <set>
 #include <string>
 
-#include "../ChatRoom/chatroom.hpp"
+#include "../Location/location.hpp"
 
 class Account {
 public:
@@ -26,11 +26,11 @@ public:
     long getLoginTime();
     void setLonginTime( long );
     
-    bool addChatRoom( ChatRoom* );
-    bool removeRoom( ChatRoom* );
-    int numChatRooms();
-    std::set<ChatRoom*>* getChatRooms();
-    ChatRoom* seekChatRoom( std::string );
+    bool addLocation( Location* );
+    bool removeRoom( Location* );
+    int numLocations();
+    std::set<Location*>* getLocations();
+    Location* seekLocation( std::string );
     
     void load( std::istream& );
     void save( std::ostream& );
@@ -44,7 +44,7 @@ private:
      std::string password;
      std::string discription;
      long loginTime;
-     std::set<ChatRoom*> currentChats;
+     std::set<Location*> currentChats;
      
      Account( std::string, std::string, long );
      void setID( int );
