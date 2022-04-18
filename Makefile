@@ -49,8 +49,8 @@ $(info $$CLIENT_INC_FLAGS is [${CLIENT_INC_FLAGS}])
 
 # The -MMD and -MP flags together generate Makefiles for us!
 # These files will have .d instead of .o as the output.
-SERVER_FLAGS := $(SERVER_INC_FLAGS) -MMD -MP -std=c++17 -g
-CLIENT_FLAGS := $(CLIENT_INC_FLAGS) -MMD -MP -std=c++17 -g
+SERVER_FLAGS := $(SERVER_INC_FLAGS) -MMD -MP -std=c++17 -g -pthread
+CLIENT_FLAGS := $(CLIENT_INC_FLAGS) -MMD -MP -std=c++17 -g -pthread
 $(info $$SERVER_FLAGS is     [${SERVER_FLAGS}])
 $(info $$CLIENT_FLAGS is     [${CLIENT_FLAGS}])
 
