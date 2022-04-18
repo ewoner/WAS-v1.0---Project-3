@@ -1,0 +1,77 @@
+Enter hostname: "localhost"
+Socket created
+localhost resolved to 127.0.0.1
+Connected
+
+Welcome!
+ {Press 1 to Login
+ Press 2 to Register
+ Type 'exit' to Quit} <logon menu>
+
+----------------------------
+2
+ Username:
+"Luca"
+
+ Password:
+"Password"
+
+Sucessfully Registered
+<logon menu>
+----------------------------
+1
+ UserName:
+"Alessandro"
+
+ Password:
+"Amato"
+
+Sucessfully logged in
+{1 Subscribe to a location
+2 Unsubscribe from a location
+3 Send a message to a location
+4 Send a private message
+5 See all the locations you are subscribed to
+6 See all the online Users
+7 See Last 10 messages
+8 Change Password
+0 Quit } <main menu>
+----------------------------
+1
+
+Insert the Location you want to subscribe to:
+"Pensacola"
+
+Sucessfully Subscribed.  Seledt an option
+<main menu>
+----------------------------
+3
+ Insert the location you want to send the message to:
+<location list>
+"0"
+
+Insert the message:
+"Hey!  Snow is coming" -- displays on other clients in Pensacola:
+                            {Message From: Alessandro
+                            Hey! Snow is comming} <msg recieved>
+----------------------------
+4
+
+Insert the user you want to send the message to:
+<user list> see <location list>
+"0"
+
+Insert the message:
+"Hey Ale"             --> displays on other client see above
+
+Sucessfully sent.  Select an option
+<main menu>
+----------------------------
+5
+
+ You are subscribed to:
+ {0 - Pensacola
+ 1 - Miltion} <location list>
+
+ Locations sent. Selcet an option
+ <main menu>

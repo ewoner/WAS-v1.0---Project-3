@@ -5,6 +5,7 @@
 #include <sstream>
 #include <netinet/in.h>
 #include <unistd.h>
+#include <mutex>
 
 #include "../Handler/handler.hpp"
 
@@ -36,6 +37,7 @@ private:
 	bool checkSendTime;
 	struct sockaddr address; 
 	socklen_t addressLen;
+	std::mutex threadLock;
 
 };
 #endif

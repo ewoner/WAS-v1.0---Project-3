@@ -15,6 +15,7 @@ int main( int nargs, char ** args ) {
     
     //main loop
     while ( true /*server.isRunning() == running*/ ) {
+        cm->manage();
         //cm.manage();
         //server.executeLoop();
         //yeild server
