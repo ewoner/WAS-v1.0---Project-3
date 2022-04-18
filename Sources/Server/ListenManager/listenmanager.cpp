@@ -1,5 +1,5 @@
 #include "listenmanager.hpp"
-#include "../was_presets.hpp"
+#include "../../was_presets.hpp"
 
 #include <iostream>
 
@@ -9,8 +9,10 @@ ListenManager::ListenManager() {
     port = PORT;
     running = false;
     listenSocket = socket(AF_INET, SOCK_STREAM, 0);
-    fcntl(listenSocket, F_SETFL, O_NONBLOCK);}
- ListenManager::~ListenManager(){
+    fcntl(listenSocket, F_SETFL, O_NONBLOCK);
+}
+
+ListenManager::~ListenManager(){
      if ( listenSocket > -1 ) {
          //close the socket
      }
@@ -28,15 +30,14 @@ void ListenManager::init( ConnectionManager * newManager ) {
     my_addr.sin_family = AF_INET;
     my_addr.sin_port = htons ( PORT );
     my_addr.sin_addr.s_addr = htonl (INADDR_ANY);
-    int b = bind (listenSocket, (struct sockaddr *) &my_addr, sizeof (my_addr));
-    if ( b == -1 ) exit ( 1 );
-    running = true;
-     std::cout << "Listen Manager(" << listenSocket << ") started in port " << port << std::endl;
+    if ( bind (listenSocket, (struct sockaddr *) &my_addr, sizeof (my_addr)) == -1 ) exit ( 2 );
+    std::cout << "Listen Manager(" << listenSocket << ") bound to port " << port << std::endl;
 }
 
 void ListenManager::start() {
-    int l = listen( listenSocket, 1 );
-    if ( l == -1 ) exit ( 2 );
+    if ( listen( listenSocket, 1 ) == -1 ) exit ( 3 );
+    std::cout << "Listen Manager(" << listenSocket << ") listening.... " << std::endl;
+    running = true;
     while ( running ) {
         struct sockaddr cli_addr;
         socklen_t  clilen;
